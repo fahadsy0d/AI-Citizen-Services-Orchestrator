@@ -25,6 +25,8 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
   const [stage, setStage] = useState<Stage>("input")
   const [text, setText] = useState(seed || DEMO)
   const [step, setStep] = useState(0)
+  const [backendResponse, setBackendResponse] = useState<string | null>(null)
+  const [apiFinished, setApiFinished] = useState(false)
 
   useEffect(() => {
     if (seed) {
@@ -34,11 +36,28 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seed])
 
-  function submit(t: string) {
+  async function submit(t: string) {
     if (!t.trim()) return
     setText(t)
     setStage("processing")
     setStep(0)
+    setApiFinished(false)
+    setBackendResponse(null)
+    
+    try {
+      const response = await fetch("http://localhost:8000/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: t })
+      })
+      const data = await response.json()
+      setBackendResponse(data.message)
+    } catch (error) {
+      console.error(error)
+      setBackendResponse("Failed to connect to backend")
+    } finally {
+      setApiFinished(true)
+    }
   }
 
   useEffect(() => {
@@ -47,9 +66,10 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
       const t = setTimeout(() => setStep((s) => s + 1), 550)
       return () => clearTimeout(t)
     }
+    if (!apiFinished) return
     const t = setTimeout(() => setStage("understanding"), 500)
     return () => clearTimeout(t)
-  }, [stage, step])
+  }, [stage, step, apiFinished])
 
   /* -------- INPUT -------- */
   if (stage === "input") {
@@ -120,6 +140,13 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
         <p className="text-[11px] font-mono uppercase tracking-wide text-muted-foreground">Your words</p>
         <p className="mt-1 text-[14px] italic text-foreground/80">&ldquo;{text}&rdquo;</p>
       </Card>
+
+      {backendResponse && (
+        <Card className="p-4 bg-primary-soft/30 border-primary/20">
+          <p className="text-[11px] font-mono uppercase tracking-wide text-primary">Backend Response</p>
+          <p className="mt-1 text-[14px] text-foreground/90 font-500">{backendResponse}</p>
+        </Card>
+      )}
 
       <EditableCard title="Situation" icon={<Icon.Alert width={16} height={16} />} defaultValue="Family income has decreased due to job loss." />
 
