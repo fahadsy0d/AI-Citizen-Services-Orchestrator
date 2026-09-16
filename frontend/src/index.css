@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-background: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #eef1f8;
+  --color-foreground: #131a2b;
+  --color-muted-foreground: #5b6478;
+  --color-border: #e3e7f1;
+  --color-border-strong: #cfd5e6;
+
+  --color-primary: #26346b;
+  --color-primary-hover: #1c2952;
+  --color-primary-foreground: #ffffff;
+  --color-primary-soft: #e8ebf7;
+
+  --color-accent: #0d8a7a;
+  --color-accent-soft: #e0f2ef;
+
+  --color-saffron: #e07b39;
+  --color-saffron-soft: #fbeee2;
+
+  --color-chakra: #1f4b99;
+
+  --color-success: #16855f;
+  --color-success-soft: #e2f3ec;
+  --color-warning: #b5761a;
+  --color-warning-soft: #fbf0dd;
+  --color-danger: #c0453f;
+  --color-danger-soft: #fbe7e5;
+  --color-info: #3060b8;
+  --color-info-soft: #e6edfb;
+  --color-pending: #6b5bbd;
+  --color-pending-soft: #ece9fa;
+
+  --radius-xl: 1.1rem;
+  --radius-2xl: 1.4rem;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background-color: #26346b;
+  color: #ffffff;
+}
+
+/* Hide scrollbars until scrolling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: #cfd5e6 transparent;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background-color: #cfd5e6;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-chakra);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@keyframes ai-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes chakra-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes listen-wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.animate-fade-up { animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in { animation: fade-in 0.4s ease both; }
+.animate-chakra-spin { animation: chakra-spin 12s linear infinite; }
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface-muted);
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  animation: shimmer 1.5s infinite;
+}

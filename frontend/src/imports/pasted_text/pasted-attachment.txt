@@ -1,0 +1,1727 @@
+You are a senior product designer, UX architect, and frontend engineer specializing in GovTech, civic technology, AI-assisted workflows, accessibility, and premium enterprise-grade interfaces.
+
+Design and build a complete, presentation-ready web application prototype called:
+
+AI CITIZEN SERVICES ORCHESTRATOR
+
+Tagline:
+“Don’t make citizens understand the government system. Make the government system understand the citizen.”
+
+IMPORTANT:
+This is NOT a normal chatbot.
+This is NOT simply a government-service directory.
+This is an AI-powered citizen journey and service orchestration platform.
+
+The product should make existing government digital services easier to discover, understand, prepare for, access, and track.
+
+==================================================
+1. TECHNOLOGY CONSTRAINT
+==================================================
+
+Build the frontend using ONLY:
+
+- React.js
+- Tailwind CSS
+- HTML
+
+Do not use:
+- Next.js
+- Vue
+- Angular
+- Bootstrap
+- Material UI
+- other frontend frameworks
+
+The prototype can use local/static/mock data for demonstration.
+
+No backend is required for this prototype.
+
+Use reusable React components and clean component structure.
+
+The UI must be responsive for:
+- desktop
+- tablet
+- mobile
+
+The primary presentation target is a desktop/laptop screen for a Smart India Hackathon internal selection demo.
+
+==================================================
+2. PRODUCT VISION
+==================================================
+
+The core philosophy is:
+
+Government is organized around departments, schemes and portals.
+
+Citizens think in terms of:
+- problems
+- goals
+- life situations
+- outcomes
+
+The application reverses the traditional interaction model.
+
+Instead of:
+
+Search government portal
+→ find scheme
+→ understand bureaucratic terminology
+→ check eligibility
+→ find documents
+→ visit another portal
+→ apply
+→ track separately
+
+Create:
+
+Citizen Problem
+→ AI understands the situation
+→ identifies relevant government services
+→ explains why they are relevant
+→ reasons through eligibility
+→ identifies required documents
+→ detects missing documents
+→ generates a personalized journey
+→ guides/coordinates the service process
+→ shows the next-best action
+→ tracks the journey in one place
+
+The citizen should never need to understand the entire government system before receiving help.
+
+==================================================
+3. CORE PRODUCT ENGINES
+==================================================
+
+The application must visually and functionally represent these seven core engines:
+
+1. Citizen AI Assistant
+2. Government Knowledge Engine
+3. Eligibility Reasoning Engine
+4. Document Intelligence Engine
+5. Citizen Journey Generator
+6. Service Orchestration Layer
+7. Citizen Dashboard
+
+Do not treat these as seven unrelated pages.
+
+They should work together as one continuous system.
+
+==================================================
+4. COMPLETE PROTOTYPE FEATURE SET
+==================================================
+
+The prototype must contain:
+
+- Citizen chat
+- Natural-language problem understanding
+- Scheme/service retrieval
+- Eligibility engine
+- Explainable eligibility
+- Document checklist
+- Missing-document detection
+- Citizen journey generation
+- Next-best-action recommendations
+- Official source citation
+- Application simulation
+- Application tracking
+- Citizen dashboard
+- Multilingual interface concept
+- Voice input
+- Notifications
+- Profile
+- My Cases / My Applications
+- Admin/data dashboard
+- Service orchestration visualization
+- Failure/pending states
+- Trust indicators
+- Mock/Prototype labels where appropriate
+
+==================================================
+5. DESIGN PRINCIPLE
+==================================================
+
+The most important design principle is:
+
+GOAL-FIRST, NOT SCHEME-FIRST.
+
+The homepage should NOT feel like a giant catalog of government schemes.
+
+The user should first be asked:
+
+“What do you need help with?”
+
+Example:
+
+“I lost my job and my child needs education support.”
+
+The system then converts this one sentence into a structured journey:
+
+Situation
+→ Relevant Services
+→ Eligibility
+→ Documents
+→ Service Journey
+→ Application
+→ Next Action
+→ Tracking
+
+This transformation is the main visual demonstration of the product.
+
+==================================================
+6. PRIMARY DEMO SCENARIO
+==================================================
+
+Use this as the main demonstration scenario:
+
+“My father lost his job and our family income has decreased. I need financial and education support.”
+
+The application should understand that the citizen may be dealing with:
+
+- employment/income disruption
+- family financial pressure
+- education-related support
+- possible government schemes/services
+- document requirements
+- eligibility questions
+
+IMPORTANT:
+Do not invent actual eligibility rules or claim that a fictional scheme provides a real benefit.
+
+Use realistic Indian government service/scheme names where appropriate, but clearly mark prototype/simulated information.
+
+If displaying actual government schemes such as:
+- PM-KISAN
+- e-Shram
+- National Scholarship Portal
+- CPGRAMS
+- Parivahan
+- Income Tax Department
+
+show them as examples of services that could be connected to the orchestration ecosystem.
+
+Do not fabricate benefits, eligibility, application results, government APIs, or live integration status.
+
+Where information is simulated, display:
+“Prototype data”
+or
+“Simulated integration”
+
+==================================================
+7. COMPETITIVE INSIGHTS TO INCORPORATE
+==================================================
+
+The design should specifically solve usability issues identified while reviewing government-service ecosystems.
+
+DATA.GOV.IN OBSERVATION:
+Scheme/dataset naming can be difficult for ordinary citizens to understand and descriptions may not immediately communicate what a scheme is actually for.
+
+DESIGN RESPONSE:
+- Explain schemes in plain language.
+- Show “What is this for?”
+- Show “Who might benefit?”
+- Show “Why this appeared for you?”
+- Use intent-based discovery instead of requiring exact scheme names.
+
+Do NOT use popularity/adoption numbers as proof that a scheme is authentic.
+If usage numbers are displayed, label them as contextual information only.
+
+UMANG OBSERVATION:
+Large amounts of secondary information or additional service promotion can distract users from their current task.
+
+DESIGN RESPONSE:
+- Task-first UI.
+- Keep the current citizen goal dominant.
+- Avoid unnecessary promotional content.
+- Do not overwhelm the user with unrelated services.
+
+SERVICEPLUS OBSERVATION:
+Important service functionality can be visually buried beneath other information, and perceived loading/buffering can negatively affect usability.
+
+DESIGN RESPONSE:
+- Primary action above the fold.
+- Clear visual hierarchy.
+- Lightweight interface.
+- Skeleton/loading states.
+- Avoid unnecessary content.
+- Make search/discovery obvious.
+
+MYSCHEME OBSERVATION:
+Users may need to know what they are looking for before searching, and statutory/bureaucratic language can be difficult to understand. External redirects can also break continuity.
+
+DESIGN RESPONSE:
+- Start from the user's problem.
+- Translate bureaucratic terminology into plain language.
+- Preserve a continuous journey.
+- When an official external portal is required, clearly explain:
+  “You are being redirected to the official government portal.”
+- Provide a return/continuation concept when technically possible.
+
+INDIA.GOV.IN OBSERVATION:
+Large amounts of information can compete with important transactional services, while exact terminology can make discovery difficult.
+
+DESIGN RESPONSE:
+- Focus the home screen around the user's current task.
+- Use semantic/intent-based search.
+- Separate informational content from transactional actions.
+
+DIGILOCKER OBSERVATION:
+External integrations can experience delays, failures, or document-matching issues.
+
+DESIGN RESPONSE:
+Design resilient states:
+- Loading
+- Verification pending
+- Retry
+- Unable to connect
+- Document mismatch
+- Manual verification
+- Official portal handoff
+
+Never make the entire journey fail simply because one external service is temporarily unavailable.
+
+==================================================
+8. INFORMATION ARCHITECTURE
+==================================================
+
+Create these primary navigation items:
+
+- Home
+- AI Assistant
+- Documents
+- My Applications / My Cases
+- Services
+- Grievances
+- Profile
+
+Optional secondary:
+- Notifications
+- Help
+- Settings
+
+The navigation must be simple and not overloaded.
+
+==================================================
+9. SCREEN 1 — HOME / LANDING DASHBOARD
+==================================================
+
+Create a premium citizen dashboard.
+
+Header:
+- Government-inspired but modern logo
+- AI Citizen Services Orchestrator
+- tagline/subtitle
+- notification icon
+- profile/avatar
+- citizen name
+
+Left sidebar:
+- Home
+- AI Assistant
+- Documents
+- My Applications
+- Services
+- Grievances
+- Profile
+
+Main hero:
+
+Greeting:
+“Good morning, Kowsika! 👋”
+
+Primary statement:
+“Tell us what you need, and we’ll connect you to the right government services — all in one place.”
+
+Large primary input:
+
+“Describe what you need help with…”
+
+Examples:
+- “I need employment support”
+- “My child needs a scholarship”
+- “I need an income certificate”
+- “I want to raise a grievance”
+
+Include:
+- text input
+- microphone button
+- submit button
+
+Below it:
+“Try asking:”
+- Employment support
+- Scholarships
+- Business support
+- Required documents
+- Check application status
+
+Create four primary action cards:
+
+1. Documents
+“View your documents”
+
+2. My Applications
+“Track your applications”
+
+3. Services
+“Explore government services”
+
+4. Grievances
+“Raise and track grievances”
+
+Add:
+- Popular Services
+- Recent Activity
+- Application Readiness
+- Notifications
+
+Do NOT overcrowd the homepage.
+
+The citizen's current goal should always remain visually dominant.
+
+==================================================
+10. SCREEN 2 — AI PROBLEM INPUT
+==================================================
+
+Create a focused AI interaction screen.
+
+Heading:
+“What do you need help with?”
+
+Large conversational input.
+
+Pre-filled demo:
+
+“My father lost his job and our family income has decreased. I need financial and education support.”
+
+Include:
+- microphone
+- voice input state
+- send
+- clear
+- example prompts
+
+Show subtle AI processing animation after submission.
+
+Do not make this look like ChatGPT.
+
+Instead, present it as the entry point into a structured government journey.
+
+==================================================
+11. SCREEN 3 — AI UNDERSTANDING
+==================================================
+
+After processing the problem, show:
+
+“Here’s what I understood”
+
+Create editable context cards:
+
+Situation:
+“Family income has decreased due to job loss.”
+
+Potential needs:
+- Employment support
+- Financial assistance
+- Education support
+
+Context:
+- Parent/guardian
+- Student in family
+- Income change
+
+Show:
+
+“Is this correct?”
+
+Buttons:
+- Confirm
+- Edit details
+
+IMPORTANT:
+All extracted information must be editable.
+
+Include a small trust message:
+
+“You remain in control. We’ll use your information only to identify relevant services.”
+
+==================================================
+12. SCREEN 4 — RECOMMENDED SERVICES
+==================================================
+
+Show services discovered by the Government Knowledge Engine.
+
+Do not simply list services.
+
+Each service card must contain:
+
+- Service/scheme name
+- Department
+- Category
+- Plain-language description
+- “Why this was recommended”
+- Eligibility match percentage
+- Required documents count
+- Application method
+- Official source indicator
+- Prototype/Simulated badge if applicable
+
+Example:
+
+“Education Support Service”
+
+Eligibility Match:
+82%
+
+Why recommended:
+“Your description indicates that a dependent student may need financial education support.”
+
+Buttons:
+- Check Eligibility
+- View Documents
+- View Details
+
+Avoid claiming that an 82% score is an official government eligibility decision.
+
+Label it:
+
+“AI eligibility match — preliminary”
+
+Also include:
+“Official eligibility is determined by the respective authority.”
+
+==================================================
+13. SCREEN 5 — ELIGIBILITY CHECK
+==================================================
+
+Create a step-by-step eligibility experience.
+
+Top progress:
+
+Step 2 of 5
+
+Questions should be simple and human-readable.
+
+Examples:
+
+“What is the student's current education level?”
+
+“Has your household income changed recently?”
+
+“Which state do you currently live in?”
+
+Use:
+- radio buttons
+- dropdowns
+- cards
+- yes/no controls
+
+Show explanation alongside important questions where appropriate.
+
+At completion:
+
+Eligibility Summary
+
+Likely eligible:
+✓ Requirement A
+✓ Requirement B
+✓ Requirement C
+
+Needs confirmation:
+⚠ Requirement D
+
+Not enough information:
+○ Requirement E
+
+Do NOT present AI reasoning as the final government decision.
+
+Use:
+“Preliminary eligibility assessment”
+
+==================================================
+14. SCREEN 6 — DOCUMENT INTELLIGENCE
+==================================================
+
+Create a document readiness interface.
+
+Heading:
+“Get your application ready”
+
+Show:
+
+Required Documents
+
+✓ Aadhaar / identity document
+✓ Education document
+✓ Income-related document
+⚠ Income Certificate — Missing
+✓ Bank details
+
+Create status categories:
+- Available
+- Verified
+- Missing
+- Needs verification
+- Expired
+
+Show:
+
+“Application readiness: 75%”
+
+Important:
+This is a readiness indicator, not an official eligibility score.
+
+Include:
+- Upload document
+- View document
+- Verify
+- Replace
+- See why this document is required
+
+If OCR is demonstrated:
+Show simulated OCR extraction.
+
+Example:
+
+“Document detected:
+Income Certificate”
+
+“Extracted information:
+Certificate type
+Issuing authority
+Date”
+
+Include mismatch/error state:
+
+“Document information could not be confidently matched.”
+
+Actions:
+- Review
+- Retry
+- Manual verification
+
+==================================================
+15. SCREEN 7 — CITIZEN JOURNEY / SERVICE GRAPH
+==================================================
+
+This is one of the most important screens.
+
+Create a beautiful visual journey graph.
+
+Example:
+
+Citizen Goal
+    ↓
+Situation Understanding
+    ↓
+Eligibility Assessment
+    ↓
+Document Readiness
+    ↓
+Service A
+    ↓
+Official Application
+    ↓
+Verification
+    ↓
+Next Action
+
+If multiple services are involved, visually branch them:
+
+                ┌→ Education Support
+Citizen Goal → Eligibility
+                └→ Employment Support
+
+Then converge into:
+
+Unified Citizen Case
+        ↓
+Next Best Action
+
+Each node should show:
+- status
+- department
+- action
+- dependency
+- timestamp where appropriate
+
+Statuses:
+✓ Completed
+● In progress
+⚠ Action required
+○ Upcoming
+⏳ Pending external system
+
+Make this look like an orchestration graph, not a normal timeline.
+
+==================================================
+16. SCREEN 8 — APPLICATION ASSISTANT
+==================================================
+
+Create a guided application form.
+
+The AI assistant should help explain fields but must not silently submit consequential information.
+
+Example:
+
+Field:
+Annual Household Income
+
+AI explanation:
+“This information may be required to assess eligibility. Enter the amount based on the applicable official instructions.”
+
+Use:
+- field validation
+- document autofill simulation
+- edit controls
+- confirmation indicators
+
+Show:
+
+“Information suggested from your document”
+
+Buttons:
+- Accept
+- Edit
+
+Before submission:
+
+“Review before submitting”
+
+Show:
+- information
+- documents
+- service
+- destination
+- consent
+
+Primary action:
+
+“Confirm & Submit”
+
+For prototype:
+“Simulated submission”
+
+Clearly display:
+“Prototype — no real application has been submitted.”
+
+==================================================
+17. SCREEN 9 — JOURNEY TRACKING DASHBOARD
+==================================================
+
+Create a unified citizen case dashboard.
+
+Heading:
+
+“My Journey”
+
+Case:
+“Family Support Journey”
+
+Show:
+
+Overall status:
+“In progress”
+
+Progress visualization.
+
+Sections:
+
+Completed
+✓ Problem understood
+✓ Eligibility checked
+✓ Documents verified
+
+In progress
+● Education support application
+
+Pending
+⏳ External verification
+
+Action required
+⚠ Upload income certificate
+
+Next Best Action:
+
+“Upload your income certificate to continue.”
+
+Primary CTA:
+“Upload Document”
+
+Secondary:
+“View Journey”
+
+Also show:
+- deadlines if applicable
+- notifications
+- application references
+- official portal status
+- last updated timestamp
+
+==================================================
+18. SCREEN 10 — PROFILE + MY CASES
+==================================================
+
+Create a clean citizen profile.
+
+Sections:
+
+Personal Information
+- Name
+- Contact
+- State
+- Preferred language
+
+Documents
+- Available documents
+- Verification states
+
+My Cases:
+- Active
+- Completed
+- Draft
+- Pending
+
+Notifications
+
+Privacy & Consent:
+- Active consents
+- Data shared
+- Purpose
+- Duration
+- Revoke/modify concept
+
+Do not expose sensitive information unnecessarily.
+
+==================================================
+19. AI ASSISTANT
+==================================================
+
+The AI Assistant should exist throughout the application as a contextual assistant.
+
+But it should NOT dominate the interface.
+
+Desktop:
+Use a right-side assistant panel or expandable assistant drawer.
+
+Mobile:
+Use a floating AI button/drawer.
+
+The assistant should understand context.
+
+For example, on Documents:
+
+“Which document is missing?”
+
+On Eligibility:
+
+“Why are you asking this question?”
+
+On Journey:
+
+“What should I do next?”
+
+On Application:
+
+“Explain this field.”
+
+Use suggested prompts.
+
+Important:
+AI responses should be concise, actionable and contextual.
+
+==================================================
+20. GOVERNMENT KNOWLEDGE ENGINE
+==================================================
+
+Visually represent that government information comes from trusted/official sources.
+
+Every important service recommendation should have:
+
+Source:
+“Official government source”
+
+Include:
+- source name
+- last updated date where available
+- source link concept
+- information type
+
+Example:
+
+Source:
+National Government Services Portal
+
+Do not fabricate URLs.
+
+Use mock source references in prototype if necessary.
+
+The AI must never visually imply that its own generated answer is the authoritative government decision.
+
+==================================================
+21. ELIGIBILITY REASONING ENGINE
+==================================================
+
+Use a hybrid conceptual model:
+
+AI:
+- understands natural language
+- extracts relevant context
+- explains rules
+
+Deterministic logic:
+- evaluates machine-checkable conditions
+
+Government authority:
+- makes the final official decision
+
+Show this distinction subtly in the UI.
+
+Use labels such as:
+
+“AI-assisted preliminary assessment”
+
+and:
+
+“Final eligibility is determined by the concerned authority.”
+
+==================================================
+22. SERVICE ORCHESTRATION LAYER
+==================================================
+
+This must be visibly demonstrated.
+
+Do not merely show a list of services.
+
+Show multiple services being coordinated.
+
+Example:
+
+Goal
+ ↓
+Service discovery
+ ↓
+Eligibility
+ ↓
+Documents
+ ↓
+Service A
+ ↓
+External verification
+ ↓
+Service B
+ ↓
+Unified case
+
+If an external service fails:
+
+Show:
+
+“External service temporarily unavailable.”
+
+Then:
+
+“Your progress is saved.”
+
+Buttons:
+- Retry
+- Continue later
+- Open official portal
+
+The journey should remain intact.
+
+==================================================
+23. CITIZEN DASHBOARD
+==================================================
+
+The dashboard should answer three questions immediately:
+
+1. What is happening?
+2. What needs my attention?
+3. What should I do next?
+
+Use:
+
+Current Journey
+Application Status
+Required Documents
+Next Best Action
+Recent Activity
+Notifications
+
+Avoid unnecessary analytics on the citizen dashboard.
+
+==================================================
+24. ADMIN / DATA DASHBOARD
+==================================================
+
+Create a separate admin-facing concept.
+
+This is NOT the main citizen interface.
+
+Show aggregate, non-personally-identifying operational information such as:
+
+- service demand
+- journey drop-off
+- average processing stage duration
+- failed integration attempts
+- pending cases
+- document-related friction
+- service usage trends
+
+Example:
+
+Service Demand
+12,450
+
+Journey Drop-off
+8.2%
+
+Document-related friction
+High
+
+External integration failures
+1.7%
+
+Use these as clearly marked prototype numbers.
+
+The purpose is to demonstrate how the platform can help identify process bottlenecks.
+
+Do not expose individual citizen personal data in the aggregate dashboard.
+
+==================================================
+25. MULTILINGUAL EXPERIENCE
+==================================================
+
+Design the interface so multilingual support is clearly possible.
+
+Language selector:
+
+English
+தமிழ்
+हिन्दी
+తెలుగు
+ಕನ್ನಡ
+മലയാളം
+
+The prototype can keep the main UI in English, but demonstrate the language-switching control and structure.
+
+Use simple English throughout the prototype.
+
+Avoid unnecessary bureaucratic terminology.
+
+==================================================
+26. VOICE
+==================================================
+
+Include voice input in:
+
+- home search
+- AI assistant
+- problem input
+
+Design states:
+
+Idle
+Listening
+Processing
+Result
+
+Use microphone icon.
+
+The interface should clearly indicate when the system is listening.
+
+==================================================
+27. NOTIFICATIONS
+==================================================
+
+Create useful notifications only.
+
+Examples:
+
+“Your document verification is complete.”
+
+“Income Certificate is required to continue.”
+
+“Your application status has changed.”
+
+Avoid promotional notifications.
+
+==================================================
+28. TRUST, CONSENT AND PRIVACY
+==================================================
+
+Trust is a core part of the product.
+
+Before a consequential service action, show:
+
+What information will be used?
+Why is it required?
+Which service will receive it?
+What will happen next?
+
+Use:
+
+“Review & Give Consent”
+
+Do not use dark patterns.
+
+Do not assume consent.
+
+For consequential actions:
+
+AI prepares
+→ Citizen reviews
+→ Citizen confirms
+→ System performs action
+
+Show audit/status information where appropriate.
+
+==================================================
+29. ERROR AND EDGE STATES
+==================================================
+
+The prototype must include realistic states.
+
+Design at least these:
+
+1. Loading
+2. No search results
+3. Missing information
+4. Document missing
+5. Document mismatch
+6. Eligibility uncertain
+7. External API unavailable
+8. Application pending
+9. Application completed
+10. Official portal handoff
+11. Session timeout concept
+12. Retry state
+
+Example:
+
+“Unable to connect to the external service right now.”
+
+“Your journey has been saved. You can retry later.”
+
+This reinforces the orchestration concept.
+
+==================================================
+30. VISUAL DESIGN DIRECTION
+==================================================
+
+Create a premium, modern, trustworthy Indian GovTech aesthetic.
+
+Visual personality:
+
+- professional
+- trustworthy
+- calm
+- futuristic
+- human-centered
+- government-friendly
+- accessible
+- sophisticated
+- not overly corporate
+- not childish
+- not flashy
+
+Use:
+- generous whitespace
+- rounded cards
+- subtle shadows
+- clean borders
+- soft gradients
+- professional icons
+- strong typography hierarchy
+- subtle micro-interactions
+- restrained animations
+
+Avoid:
+- excessive gradients
+- excessive glassmorphism
+- neon cyberpunk styling
+- overly colorful dashboards
+- excessive decorative illustrations
+- clutter
+- giant chatbot bubbles
+- generic SaaS appearance
+
+The visual identity should feel like:
+
+“Modern Indian public digital infrastructure.”
+
+==================================================
+31. INDIAN VISUAL IDENTITY
+==================================================
+
+Use subtle Indian visual elements.
+
+Possible motifs:
+- Ashoka Chakra-inspired geometry
+- government-building silhouettes
+- subtle tricolor accents
+- Indian architectural line illustrations
+- restrained national visual language
+
+Do NOT make every section orange/white/green.
+
+Keep the design modern and tasteful.
+
+Avoid political-party branding.
+
+==================================================
+32. REFERENCE DESIGN INSPIRATION
+==================================================
+
+Use the supplied reference screenshots as visual inspiration.
+
+Important characteristics to preserve:
+
+- Left navigation
+- Central citizen workspace
+- Contextual AI assistant
+- Hero problem input
+- Service cards
+- Document cards
+- Application cards
+- Recent activity
+- Application readiness
+- Clean rounded UI
+- Indian government visual cues
+- Premium white/light background
+- Soft blue/teal/purple visual accents
+- Strong information hierarchy
+
+However, improve upon the references by reducing clutter and making the citizen goal and next action more prominent.
+
+Do not blindly copy the screenshots.
+
+Use them as design references.
+
+==================================================
+33. INFORMATION HIERARCHY
+==================================================
+
+Every major screen should follow:
+
+PRIMARY:
+What does the citizen need to know/do now?
+
+SECONDARY:
+What information supports that action?
+
+TERTIARY:
+Additional details.
+
+Never allow secondary information to overpower the primary citizen action.
+
+==================================================
+34. MICROCOPY
+==================================================
+
+Use simple, human language.
+
+Instead of:
+“Determine your eligibility status”
+
+Use:
+“Let’s check if you may qualify.”
+
+Instead of:
+“Submit requisite documentation”
+
+Use:
+“Add the documents you need.”
+
+Instead of:
+“Navigate to the concerned departmental portal”
+
+Use:
+“Continue on the official government portal.”
+
+Instead of:
+“Application prerequisites”
+
+Use:
+“What you need before applying.”
+
+==================================================
+35. COMPONENT SYSTEM
+==================================================
+
+Create reusable React components:
+
+- Header
+- Sidebar
+- MobileNavigation
+- AIInput
+- AIAssistant
+- ServiceCard
+- SchemeCard
+- EligibilityCard
+- DocumentCard
+- DocumentStatus
+- JourneyNode
+- JourneyGraph
+- ApplicationCard
+- CaseTimeline
+- NextBestAction
+- NotificationPanel
+- TrustBadge
+- OfficialSource
+- ConsentModal
+- LoadingState
+- ErrorState
+- EmptyState
+- ProgressIndicator
+- StatusBadge
+- ProfileCard
+
+Maintain consistent spacing, typography and interaction patterns.
+
+==================================================
+36. INTERACTION REQUIREMENTS
+==================================================
+
+The prototype should feel functional.
+
+Implement frontend interactions such as:
+
+- navigation between screens
+- opening AI assistant
+- entering problem
+- submitting demo problem
+- AI understanding transition
+- editing extracted context
+- viewing recommended services
+- opening eligibility
+- progressing through eligibility questions
+- showing eligibility result
+- document upload simulation
+- missing-document detection simulation
+- opening journey graph
+- moving to application assistant
+- form validation
+- review before submission
+- simulated submission
+- updating tracking status
+- opening notifications
+- changing language selector state
+- opening profile
+- consent modal
+- official portal handoff simulation
+- retry after integration failure
+
+Use mock state/data to demonstrate these interactions.
+
+==================================================
+37. DEMO FLOW
+==================================================
+
+The complete presentation demo should work like this:
+
+HOME
+
+User enters:
+
+“My father lost his job and our family income has decreased. I need financial and education support.”
+
+↓
+
+AI UNDERSTANDING
+
+System shows:
+
+“Here’s what I understood”
+
+↓
+
+RECOMMENDED SERVICES
+
+System identifies relevant services and explains why.
+
+↓
+
+ELIGIBILITY
+
+User answers a few questions.
+
+↓
+
+DOCUMENTS
+
+System detects:
+
+“Income Certificate — Missing”
+
+↓
+
+JOURNEY
+
+Show:
+
+Problem
+→ Eligibility
+→ Documents
+→ Service
+→ Application
+→ Verification
+→ Next Action
+
+↓
+
+APPLICATION
+
+User completes simulated application.
+
+↓
+
+TRACKING
+
+Show:
+
+“Application in progress”
+
+↓
+
+NEXT BEST ACTION
+
+“Upload your income certificate.”
+
+↓
+
+DASHBOARD
+
+Show the complete citizen case.
+
+This should be the strongest end-to-end prototype flow.
+
+==================================================
+38. SERVICE ECOSYSTEM CONTEXT
+==================================================
+
+The architecture should visually communicate that this platform can work across:
+
+- National Government Services Portal
+- State Government Portals
+- Department Websites
+- National Scholarship Portal
+- e-Shram
+- PM-KISAN
+- CPGRAMS
+- Parivahan
+- Income Tax Department
+- DigiLocker
+- UMANG
+- MyScheme
+
+These are ecosystem references, not necessarily live integrations in this prototype.
+
+Represent them as:
+
+“Potential/Prototype Service Connections”
+
+unless a real integration has actually been implemented.
+
+The product does not replace these systems.
+
+It acts as an intelligent orchestration layer over existing government digital infrastructure.
+
+==================================================
+39. DIFFERENTIATION
+==================================================
+
+The UI must communicate this difference clearly.
+
+Do not position the product as:
+
+“An AI chatbot for government services.”
+
+Position it as:
+
+“An AI-powered citizen journey and government service orchestration platform.”
+
+Core differentiation:
+
+Traditional:
+Service
+→ Portal
+→ Search
+→ Application
+
+Our platform:
+Citizen Goal
+→ AI Understanding
+→ Service Discovery
+→ Eligibility Reasoning
+→ Document Readiness
+→ Journey Generation
+→ Orchestration
+→ Next Best Action
+→ Unified Tracking
+
+The strongest product statement should be:
+
+“One citizen goal. One intelligent journey. Multiple services connected.”
+
+==================================================
+40. SECURITY AND RESPONSIBLE AI
+==================================================
+
+Design the UI around these principles:
+
+- least-privilege data use
+- explicit consent
+- explainability
+- source provenance
+- auditability
+- human confirmation
+- deterministic validation for critical rules
+- safe failure
+- no fabricated government decisions
+
+Important principle:
+
+AI can assist with understanding and coordination.
+
+AI must not pretend to be the government authority making the final legal/administrative decision.
+
+==================================================
+41. ACCESSIBILITY
+==================================================
+
+Follow accessible design principles:
+
+- strong readable contrast
+- keyboard-friendly interactions
+- visible focus states
+- sufficient touch target size
+- semantic HTML
+- descriptive labels
+- avoid color-only status indicators
+- readable font sizes
+- accessible form controls
+- screen-reader-friendly structure
+
+The application should be usable by citizens with different levels of digital literacy.
+
+==================================================
+42. RESPONSIVE DESIGN
+==================================================
+
+Desktop:
+- left navigation
+- central workspace
+- optional right contextual AI panel
+
+Tablet:
+- collapsible navigation
+- adaptive cards
+
+Mobile:
+- bottom navigation or compact navigation
+- full-screen AI assistant
+- stacked cards
+- simplified journey graph
+- sticky next-best-action CTA
+
+Do not simply shrink the desktop UI.
+
+Recompose the information hierarchy for mobile.
+
+==================================================
+43. ANIMATION
+==================================================
+
+Use subtle professional animations.
+
+Examples:
+
+- page transitions
+- card hover
+- progress animation
+- AI processing indicator
+- document verification animation
+- journey-node progression
+- notification appearance
+- modal transitions
+
+Avoid excessive motion.
+
+Animations must support understanding, not distract.
+
+==================================================
+44. DATA MODEL FOR PROTOTYPE
+==================================================
+
+Use structured mock data.
+
+Example objects:
+
+Citizen:
+{
+  name,
+  state,
+  preferredLanguage,
+  documents,
+  applications,
+  notifications
+}
+
+Service:
+{
+  name,
+  department,
+  category,
+  description,
+  eligibilityMatch,
+  requiredDocuments,
+  officialSource,
+  status,
+  prototype
+}
+
+Document:
+{
+  name,
+  type,
+  status,
+  verified,
+  requiredFor
+}
+
+JourneyStep:
+{
+  id,
+  title,
+  description,
+  status,
+  department,
+  dependency,
+  nextAction
+}
+
+Application:
+{
+  id,
+  service,
+  status,
+  submittedAt,
+  nextAction,
+  lastUpdated
+}
+
+==================================================
+45. IMPORTANT CONTENT RULES
+==================================================
+
+Never fabricate:
+- government API integrations
+- official eligibility decisions
+- fake government approval
+- fake certificate verification
+- fake official URLs
+- real-world application submission
+
+Use:
+“Simulated”
+“Prototype”
+“Mock integration”
+
+where appropriate.
+
+If an official government source is shown, make it clear that the source is external/official.
+
+==================================================
+46. FINAL VISUAL QUALITY
+==================================================
+
+The final result should look like a serious product that could be shown to:
+
+- Smart India Hackathon judges
+- government technology stakeholders
+- university evaluators
+- GovTech professionals
+
+It should NOT look like:
+- a college mini-project
+- a generic AI chatbot
+- a simple CRUD dashboard
+- a generic SaaS admin template
+- a collection of disconnected screens
+
+It should feel like a coherent product.
+
+Every screen should visually connect to the same citizen journey.
+
+==================================================
+47. FINAL HERO MESSAGE
+==================================================
+
+Use this message strategically:
+
+“Don’t make citizens understand the government system.
+Make the government system understand the citizen.”
+
+Supporting line:
+
+“Describe your goal. We’ll help you discover, prepare for and navigate the right government services.”
+
+Final product statement:
+
+“One Citizen. One Request. Every Service Connected.”
+
+==================================================
+48. FINAL DELIVERABLE
+==================================================
+
+Produce a complete high-fidelity responsive frontend prototype containing all 10 screens:
+
+1. Home / Landing
+2. AI Problem Input
+3. AI Understanding
+4. Recommended Services
+5. Eligibility Check
+6. Documents
+7. Service Graph / Citizen Journey
+8. Application Assistant
+9. Journey Tracking Dashboard
+10. Profile + My Cases
+
+Also include:
+- AI assistant
+- admin/data dashboard
+- notifications
+- multilingual selector
+- voice interaction state
+- consent modal
+- official source indicators
+- loading/error/empty states
+- document verification states
+- service integration failure state
+
+Ensure all screens are connected through working React navigation/interactions.
+
+The final prototype should demonstrate the complete transformation:
+
+CITIZEN PROBLEM
+↓
+AI UNDERSTANDING
+↓
+SERVICE DISCOVERY
+↓
+ELIGIBILITY REASONING
+↓
+DOCUMENT INTELLIGENCE
+↓
+CITIZEN JOURNEY
+↓
+SERVICE ORCHESTRATION
+↓
+APPLICATION
+↓
+NEXT-BEST ACTION
+↓
+UNIFIED TRACKING
+
+The result must be premium, clean, trustworthy, modern, Indian GovTech-oriented, accessible, presentation-ready, and clearly differentiated from existing government service directories and ordinary AI chatbots.

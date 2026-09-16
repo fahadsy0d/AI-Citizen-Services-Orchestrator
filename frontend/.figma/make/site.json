@@ -1,0 +1,10 @@
+{
+  "description": "Enables users to create and manage task lists with clear instructions, enhancing productivity and ensuring tasks are completed as directed.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
