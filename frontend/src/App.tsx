@@ -26,6 +26,8 @@ export default function App() {
   const [notifOpen, setNotifOpen] = useState(false)
   const unread = notifications.filter((n) => n.unread).length
 
+  const [threadId] = useState(() => "case_" + Math.random().toString(36).substring(7))
+
   function go(v: View) {
     if (v === "assistant") setSeed("")
     setView(v)
@@ -52,12 +54,12 @@ export default function App() {
 
         <main className="flex-1 px-4 pb-28 pt-6 sm:px-6 lg:px-8 lg:pb-10">
           {view === "home" && <Home go={go} onProblem={startProblem} />}
-          {view === "assistant" && <Assistant seed={seed} onConfirm={() => go("services")} />}
-          {view === "services" && <Services go={go} />}
+          {view === "assistant" && <Assistant seed={seed} threadId={threadId} onConfirm={() => go("services")} />}
+          {view === "services" && <Services go={go} threadId={threadId} />}
           {view === "eligibility" && <Eligibility go={go} />}
-          {view === "documents" && <Documents go={go} />}
+          {view === "documents" && <Documents go={go} threadId={threadId} />}
           {view === "journey" && <Journey go={go} />}
-          {view === "application" && <Application go={go} />}
+          {view === "application" && <Application go={go} threadId={threadId} />}
           {view === "tracking" && <Tracking go={go} />}
           {view === "profile" && <Profile go={go} />}
           {view === "grievances" && <Grievances />}

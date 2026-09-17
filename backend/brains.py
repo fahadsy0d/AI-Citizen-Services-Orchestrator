@@ -1,4 +1,4 @@
-﻿import json
+import json
 import re
 import sqlite3 as sq
 from typing import List, TypedDict
@@ -14,7 +14,7 @@ class CitizenState(TypedDict, total=False):
     user_input: str
     category: str
     specific_goal: str
-    discovered_services: List[str]
+    discovered_services: List[dict]
     missing_documents: List[str]
     readiness_percentage: int
     user_consent: bool
@@ -78,15 +78,53 @@ def detect_intent_node(state: CitizenState) -> dict:
         return _fallback_intent(current_message)
 
 
+_GOAL_STOPWORDS = {
+    "the", "and", "for", "with", "need", "want", "support", "services",
+    "service", "have", "from", "this", "that", "our", "your",
+}
+
+
+def score_scheme(scheme: dict, specific_goal: str | None, category: str | None) -> int:
+    """Compute a lightweight, explainable relevance score for a scheme.
+
+    This is a preliminary relevance indicator, not a certified eligibility
+    score: it combines (a) whether the scheme's category matches the
+    citizen's detected category and (b) keyword overlap between their
+    stated goal and the scheme's description/eligibility/audience text.
+    Deliberately capped below 100 since it's an approximation.
+    """
+    text = " ".join(
+        str(scheme.get(field, "") or "")
+        for field in ("description", "eligibility_criteria", "target_audience")
+    ).lower()
+
+    goal_words = set(re.findall(r"[a-z]{3,}", (specific_goal or "").lower())) - _GOAL_STOPWORDS
+
+    if goal_words:
+        matched = sum(1 for word in goal_words if word in text)
+        overlap_ratio = matched / len(goal_words)
+    else:
+        overlap_ratio = 0.0
+
+    score = 55
+    if category and scheme.get("category") == category:
+        score += 25
+    score += round(overlap_ratio * 15)
+
+    return min(score, 97)
+
+
 def discover_services_node(state: CitizenState) -> dict:
     """Load candidate schemes matching the detected category."""
-    user_category = state["category"]
+    user_category = state.get("category", "Employment") # fallback
+    specific_goal = state.get("specific_goal")
 
     with sq.connect(DB_PATH) as conn:
+        conn.row_factory = sq.Row
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT name, eligibility_criteria, required_documents
+            SELECT id, name, category, year_established, target_audience, time_to_apply, description, eligibility_criteria, required_documents
             FROM schemes
             WHERE category = ?
             """,
@@ -94,10 +132,13 @@ def discover_services_node(state: CitizenState) -> dict:
         )
         results = cursor.fetchall()
 
-    formatted_services = [
-        f"Scheme: {row[0]} | Requires: {row[1]} | Documents: {row[2]}"
-        for row in results
-    ]
+    formatted_services = []
+    for row in results:
+        scheme = dict(row)
+        scheme["match"] = score_scheme(scheme, specific_goal, user_category)
+        formatted_services.append(scheme)
+
+    formatted_services.sort(key=lambda s: s["match"], reverse=True)
     return {"discovered_services": formatted_services}
 
 

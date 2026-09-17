@@ -1,0 +1,4 @@
+
+# Backend runtime artifacts
+backend/__pycache__/
+*.db

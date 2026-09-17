@@ -1,5 +1,6 @@
 {
-  "description": "Enables users to create and manage task lists with clear instructions, enhancing productivity and ensuring tasks are completed as directed.",
+  "title": "AI Citizen Services Orchestrator",
+  "description": "An AI orchestration layer that turns a citizen's plain-language need into a guided, unified journey across government employment and business support schemes.",
   "robots": {
     "index": false
   },

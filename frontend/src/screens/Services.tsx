@@ -1,21 +1,52 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Icon } from "../lib/icons"
 import { Button, Card, SectionTitle, Skeleton, EmptyState, Tag, PrototypeBadge } from "../components/ui"
 import { ServiceCard } from "../components/domain"
-import { services, ecosystem } from "../data/mock"
+import { ecosystem } from "../data/mock"
 import type { View } from "../lib/nav"
+import type { Service } from "../data/mock" // We will map the backend data to this type or modify ServiceCard.
 
-const cats = ["All", "Education", "Livelihood", "Financial"]
+const cats = ["All", "Employment", "Business", "Education", "Livelihood", "Financial"]
 
-export default function Services({ go }: { go: (v: View) => void }) {
+export default function Services({ go, threadId }: { go: (v: View) => void; threadId: string }) {
   const [cat, setCat] = useState("All")
   const [query, setQuery] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [services, setServices] = useState<Service[]>([])
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/api/services?thread_id=${threadId}`)
+      .then(r => r.json())
+      .then(data => {
+        // Map backend schema to frontend Service type
+        const mapped = data.services
+          .map((s: any) => ({
+            id: String(s.id),
+            name: s.name,
+            department: s.category, // fallback mapping
+            category: s.category,
+            description: s.description || s.eligibility_criteria,
+            why: "Recommended based on your recent interactions.",
+            match: typeof s.match === "number" ? s.match : 75,
+            requiredDocs: s.required_documents ? s.required_documents.split(",").length : 0,
+            method: s.time_to_apply || "Online",
+            source: "National Portal",
+            sourceUpdated: s.year_established || "2025",
+            prototype: false,
+            icon: s.category === "Business" ? "briefcase" : s.category === "Employment" ? "briefcase" : "rupee"
+          }))
+          .sort((a: Service, b: Service) => b.match - a.match)
+        setServices(mapped)
+        setLoading(false)
+      })
+      .catch(e => {
+        console.error("Failed to fetch services", e)
+        setLoading(false)
+      })
+  }, [threadId])
 
   function search(q: string) {
     setQuery(q)
-    setLoading(true)
-    setTimeout(() => setLoading(false), 700)
   }
 
   const filtered = services.filter(

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Icon } from "../lib/icons"
 import { Button, Card, SectionTitle, TrustBadge, StatusBadge, PrototypeBadge } from "../components/ui"
 import { DocumentCard, ReadinessRing } from "../components/domain"
@@ -7,9 +7,24 @@ import type { View } from "../lib/nav"
 
 type OcrStage = "idle" | "uploading" | "extracting" | "done" | "mismatch"
 
-export default function Documents({ go }: { go: (v: View) => void }) {
+export default function Documents({ go, threadId }: { go: (v: View) => void; threadId: string }) {
   const [ocr, setOcr] = useState<OcrStage>("idle")
-  const readiness = 75
+  const [readiness, setReadiness] = useState(75)
+  const [missingDocs, setMissingDocs] = useState<string[]>([])
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/api/state?thread_id=${threadId}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.readiness_percentage !== undefined) {
+          setReadiness(data.readiness_percentage)
+        }
+        if (data.missing_documents) {
+          setMissingDocs(data.missing_documents)
+        }
+      })
+      .catch(console.error)
+  }, [threadId])
 
   function startUpload() {
     setOcr("uploading")
@@ -56,9 +71,11 @@ export default function Documents({ go }: { go: (v: View) => void }) {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-3">
           <SectionTitle>Required documents</SectionTitle>
-          {documents.map((d) => (
-            <DocumentCard key={d.id} d={d} onAction={(a) => (a === "upload" || a === "replace" ? startUpload() : undefined)} />
-          ))}
+          {documents.map((d) => {
+            const isMissing = missingDocs.includes(d.name) || missingDocs.some(md => md.toLowerCase().includes(d.name.toLowerCase()) || d.name.toLowerCase().includes(md.toLowerCase()));
+            const docStatus = isMissing ? "missing" : d.status;
+            return <DocumentCard key={d.id} d={{...d, status: docStatus}} onAction={(a) => (a === "upload" || a === "replace" ? startUpload() : undefined)} />
+          })}
         </div>
 
         <div className="space-y-4">

@@ -6,7 +6,7 @@ import type { View } from "../lib/nav"
 
 type Stage = "form" | "review" | "submitting" | "done"
 
-export default function Application({ go }: { go: (v: View) => void }) {
+export default function Application({ go, threadId }: { go: (v: View) => void; threadId: string }) {
   const [stage, setStage] = useState<Stage>("form")
   const [consent, setConsent] = useState(false)
   const [income, setIncome] = useState("")
@@ -166,7 +166,19 @@ export default function Application({ go }: { go: (v: View) => void }) {
         onConfirm={() => {
           setConsent(false)
           setStage("submitting")
-          setTimeout(() => setStage("done"), 1800)
+          
+          fetch("http://localhost:8000/api/consent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ user_consent: true, thread_id: threadId })
+          })
+          .then(() => {
+            setTimeout(() => setStage("done"), 1000)
+          })
+          .catch(e => {
+            console.error(e)
+            setTimeout(() => setStage("done"), 1000)
+          })
         }}
       />
     </div>

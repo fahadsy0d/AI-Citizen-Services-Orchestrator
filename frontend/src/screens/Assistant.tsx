@@ -21,12 +21,14 @@ const processingSteps = [
 
 type Stage = "input" | "processing" | "understanding"
 
-export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm: () => void }) {
+export default function Assistant({ seed, threadId, onConfirm }: { seed: string; threadId: string; onConfirm: () => void }) {
   const [stage, setStage] = useState<Stage>("input")
   const [text, setText] = useState(seed || DEMO)
   const [step, setStep] = useState(0)
   const [backendResponse, setBackendResponse] = useState<string | null>(null)
   const [apiFinished, setApiFinished] = useState(false)
+  const [backendCategory, setBackendCategory] = useState<string | null>(null)
+  const [backendGoal, setBackendGoal] = useState<string | null>(null)
 
   useEffect(() => {
     if (seed) {
@@ -48,10 +50,12 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
       const response = await fetch("http://localhost:8000/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: t })
+        body: JSON.stringify({ query: t, thread_id: threadId })
       })
       const data = await response.json()
-      setBackendResponse(data.message)
+      setBackendResponse(data.agent_response || data.message || "Connected successfully")
+      setBackendCategory(data.category)
+      setBackendGoal(data.specific_goal)
     } catch (error) {
       console.error(error)
       setBackendResponse("Failed to connect to backend")
@@ -148,7 +152,7 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
         </Card>
       )}
 
-      <EditableCard title="Situation" icon={<Icon.Alert width={16} height={16} />} defaultValue="Family income has decreased due to job loss." />
+      <EditableCard title="Situation" icon={<Icon.Alert width={16} height={16} />} defaultValue={backendGoal || "Family income has decreased due to job loss."} />
 
       <Card className="p-5">
         <div className="mb-3 flex items-center justify-between">
@@ -156,7 +160,7 @@ export default function Assistant({ seed, onConfirm }: { seed: string; onConfirm
           <button className="flex items-center gap-1 text-[12px] text-primary hover:underline"><Icon.Pencil width={13} height={13} /> Edit</button>
         </div>
         <div className="flex flex-wrap gap-2">
-          {["Employment support", "Financial assistance", "Education support"].map((n) => (
+          {[(backendCategory || "Employment support")].map((n) => (
             <span key={n} className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1.5 text-[13px] font-500 text-primary">
               {n}
               <Icon.Close width={13} height={13} className="opacity-50" />
